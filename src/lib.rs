@@ -1,24 +1,5 @@
 use terminal_size::{Width, Height, terminal_size};
 
-pub fn add(left: usize, right: usize) -> usize 
-{
-	left + right
-}
-
-#[cfg(test)]
-mod tests 
-{
-	use super::*;
-
-	#[test]
-	fn it_works() 
-	{
-		let result = add(2, 2);
-		assert_eq!(result, 4);
-	}
-}
-
-
 pub fn print_wrap(margins:usize, subsequent_tab:usize, line:&str)
 {
 	let x;
