@@ -90,7 +90,6 @@ pub fn split(width:usize, line:&str) -> Vec<String>
 {
 	let mut strings:Vec<String> = Vec::new();
 
-	let mut current_tab = 0;
 	if line.len() <= width
 	{
 		strings.push(String::from(line));
@@ -98,7 +97,7 @@ pub fn split(width:usize, line:&str) -> Vec<String>
 	else
 	{
 		let bytes = line.as_bytes();
-		let mut index= width - current_tab - 1;
+		let mut index= width - 1;
 		let mut start= 0 as usize;
 		while (index > start) && (index < bytes.len())
 		{
@@ -106,16 +105,14 @@ pub fn split(width:usize, line:&str) -> Vec<String>
 			{
 				let slice = &line[start..index];
 				strings.push(String::from(slice));
-
-				current_tab = 0;
 				start = index + 1; // skip the space we're currently on
-				let pre_index = start + (width - current_tab) -1 ;
-				index = pre_index;
+				index = start + width ;
+
 				if index > bytes.len()
 				{
 					index = bytes.len() -1;
 				}
-				if (index-start) < (width - current_tab -1)
+				if (index-start) < (width -1)
 				{
 					// end of the line. not enough left to split, so just print it and quit
 					let slice = &line[start..bytes.len()];
