@@ -47,10 +47,13 @@ pub fn print_wrap(margins:usize, subsequent_tab:usize, line:&str)
 				start = index + 1; // skip the space we're currently on
 				index = start + width - current_tab - margins;
 
-				if index > bytes.len()
+				if index >= bytes.len()
 				{
 					index = bytes.len() -1;
 				}
+				//println!("\tindex {}, start {}, len {}, (index-start) {}, (width-current_tab - margins -1) {}",
+				//	index,start,bytes.len(),(index-start),(width-current_tab - margins -1));
+				
 				if (index-start) < (width - current_tab - margins -1)
 				{
 					// end of the line. not enough left to split, so just print it and quit
